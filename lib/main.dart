@@ -37,9 +37,9 @@ class _MyHomePageState extends State<MyHomePage> {
   String _navigatorButtonText = '';
   String _routeNameButtonText = '';
 
-  void _clearButton() {
+  void _clearButtonTapped() {
     setState(() {
-      _navigatorButtonText = '';
+      _navigatorButtonText = '次へ(Navigator)';
       _routeNameButtonText = '';
     });
   }
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _clearButton,
+        onPressed: _clearButtonTapped,
         tooltip: 'Increment',
         child: const Icon(Icons.restore_from_trash),
       ),
