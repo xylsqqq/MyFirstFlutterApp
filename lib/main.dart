@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'next_page.dart';
 
 void main() {
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const MyHomePage(title: 'Flutter Demo Home Page'),
-        '/routeNameTrans': (context) => const TransitionByRouteNamePage()
+        '/routeNameTrans': (context) => const TransitionByRouteNamePage(name: 'ywang-routeName',)
       },
     );
   }
@@ -35,23 +34,31 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  String _navigatorButtonText = '';
+  String _routeNameButtonText = '';
 
-  void _incrementCounter() {
+  void _clearButtonTapped() {
     setState(() {
-      _counter++;
+      _navigatorButtonText = '次へ(Navigator)';
+      _routeNameButtonText = '';
     });
   }
 
-  void _nextPageButtonByNavigatorTapped() {
-    Navigator.push(
+  void _nextPageButtonByNavigatorTapped() async {
+    final result = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const TransitionByNavigatorPage()),
+      MaterialPageRoute(builder: (context) => const TransitionByNavigatorPage(name: 'ywang-navigator',)),
     );
+    setState(() {
+      _navigatorButtonText = result;
+    });
   }
 
-  void _nextPageButtonByRouteNameTapped() {
-    Navigator.pushNamed(context, '/routeNameTrans');
+  void _nextPageButtonByRouteNameTapped() async {
+    final result = await Navigator.pushNamed(context, '/routeNameTrans', arguments: _routeNameButtonText);
+    setState(() {
+      _routeNameButtonText = result.toString();
+    });
   }
 
   @override
@@ -67,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.all(32.0),
               child: ElevatedButton(
                 onPressed: _nextPageButtonByNavigatorTapped,
-                child: const Text('次へ(Navigator)'),
+                child: Text(_navigatorButtonText),
               ),
             )
           ),
@@ -76,16 +83,16 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.all(32.0),
               child: ElevatedButton(
                 onPressed: _nextPageButtonByRouteNameTapped,
-                child: const Text('次へ(Route Name)'),
+                child: Text(_routeNameButtonText),
               ),
             ),
           )
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: _clearButtonTapped,
         tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.restore_from_trash),
       ),
     );
   }
