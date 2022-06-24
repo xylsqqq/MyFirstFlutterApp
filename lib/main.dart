@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'show_image_page.dart';
 import 'next_page.dart';
 
 void main() {
@@ -34,8 +37,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String _navigatorButtonText = '';
-  String _routeNameButtonText = '';
+  String _navigatorButtonText = 'Go To Next Page use Navigator';
+  String _routeNameButtonText = 'Go To Next Page use Route Name';
+  final String _imagePage = 'Go To Image Page';
+  final double _buttonPadding = 32.0;
 
   void _clearButtonTapped() {
     setState(() {
@@ -61,6 +66,13 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _onImagePageButtonTapped() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ImagePage())
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           Center(
             child: Padding(
-              padding: const EdgeInsets.all(32.0),
+              padding: EdgeInsets.only(top: _buttonPadding),
               child: ElevatedButton(
                 onPressed: _nextPageButtonByNavigatorTapped,
                 child: Text(_navigatorButtonText),
@@ -80,10 +92,19 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Center(
             child: Padding(
-              padding: const EdgeInsets.all(32.0),
+              padding: EdgeInsets.only(top: _buttonPadding),
               child: ElevatedButton(
                 onPressed: _nextPageButtonByRouteNameTapped,
                 child: Text(_routeNameButtonText),
+              ),
+            ),
+          ),
+          Center(
+            child: Padding(
+              padding: EdgeInsets.only(top: _buttonPadding),
+              child: ElevatedButton(
+                onPressed: _onImagePageButtonTapped,
+                child: Text(_imagePage),
               ),
             ),
           )
