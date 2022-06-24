@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'show_image_page.dart';
 import 'next_page.dart';

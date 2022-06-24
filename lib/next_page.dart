@@ -26,10 +26,6 @@ class TransitionByNavigatorPage extends StatelessWidget {
                   child: const Text('戻る(Navigator)'),
                 )
             ),
-            ElevatedButton(
-                onPressed: () {},
-                child: const Text('Go To Image Page')
-            )
           ],
         ),
       ),

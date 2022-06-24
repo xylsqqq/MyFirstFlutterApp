@@ -15,7 +15,7 @@ class ImagePage extends StatelessWidget {
         width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             Image(
               image: NetworkImage(_imageURL),
             ),
