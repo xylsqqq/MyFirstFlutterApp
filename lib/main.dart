@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_univer/text_field_page.dart';
 import 'package:flutter_univer/text_page.dart';
 import 'show_image_page.dart';
 import 'next_page.dart';
@@ -40,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String _routeNameButtonText = 'Go To Next Page use Route Name';
   final String _imagePage = 'Go To Image Page';
   final String _textPage = 'Go To Text Page';
+  final String _textFieldPage = 'Go To Text Field Page';
   final double _buttonPadding = 32.0;
 
   void _clearButtonTapped() {
@@ -75,6 +77,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _onTextPageButtonTapped() {
     Navigator.push(context, MaterialPageRoute(builder: (context) => const TextPage()));
+  }
+
+  void _onTextFieldButtonTapped() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const TextFieldUIPage()));
   }
 
   @override
@@ -120,7 +126,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text(_textPage),
               ),
             ),
-          )
+          ),
+          Center(
+            child: Padding(
+              padding: EdgeInsets.only(top: _buttonPadding),
+              child: ElevatedButton(
+                onPressed: _onTextFieldButtonTapped,
+                child: Text(_textFieldPage),
+              ),
+            ),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
