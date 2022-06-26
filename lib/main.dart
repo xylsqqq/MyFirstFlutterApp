@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_univer/text_page.dart';
 import 'show_image_page.dart';
 import 'next_page.dart';
 
@@ -38,6 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String _navigatorButtonText = 'Go To Next Page use Navigator';
   String _routeNameButtonText = 'Go To Next Page use Route Name';
   final String _imagePage = 'Go To Image Page';
+  final String _textPage = 'Go To Text Page';
   final double _buttonPadding = 32.0;
 
   void _clearButtonTapped() {
@@ -69,6 +71,10 @@ class _MyHomePageState extends State<MyHomePage> {
         context,
         MaterialPageRoute(builder: (context) => const ImagePage())
     );
+  }
+
+  void _onTextPageButtonTapped() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const TextPage()));
   }
 
   @override
@@ -103,6 +109,15 @@ class _MyHomePageState extends State<MyHomePage> {
               child: ElevatedButton(
                 onPressed: _onImagePageButtonTapped,
                 child: Text(_imagePage),
+              ),
+            ),
+          ),
+          Center(
+            child: Padding(
+              padding: EdgeInsets.only(top: _buttonPadding),
+              child: ElevatedButton(
+                onPressed: _onTextPageButtonTapped,
+                child: Text(_textPage),
               ),
             ),
           )
