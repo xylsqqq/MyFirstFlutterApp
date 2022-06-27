@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_univer/list_page.dart';
+import 'package:flutter_univer/long_lists_page.dart';
 import 'package:flutter_univer/text_field_page.dart';
 import 'package:flutter_univer/text_page.dart';
+import 'grid_list_page.dart';
 import 'show_image_page.dart';
 import 'next_page.dart';
 
@@ -39,10 +42,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String _navigatorButtonText = 'Go To Next Page use Navigator';
   String _routeNameButtonText = 'Go To Next Page use Route Name';
-  final String _imagePage = 'Go To Image Page';
-  final String _textPage = 'Go To Text Page';
-  final String _textFieldPage = 'Go To Text Field Page';
-  final double _buttonPadding = 32.0;
+  static const String _imagePage = 'Go To Image Page';
+  static const String _textPage = 'Go To Text Page';
+  static const String _textFieldPage = 'Go To Text Field Page';
+  static const String _listPage = 'Go To List Page';
+  static const String _longListsPage = 'Go To Long Lists Page';
+  static const String _gridList = 'Go To Grid List Page';
+  static const double _buttonPadding = 12.0;
 
   void _clearButtonTapped() {
     setState(() {
@@ -83,6 +89,18 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.push(context, MaterialPageRoute(builder: (context) => const TextFieldUIPage()));
   }
 
+  void _onListPageButtonTapped() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const ListPage()));
+  }
+
+  void _onLongListsButtonTapped() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const LongListsPage()));
+  }
+
+  void _onGridListPageButtonTapped() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const GridListPage()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           Center(
             child: Padding(
-              padding: EdgeInsets.only(top: _buttonPadding),
+              padding: const EdgeInsets.only(top: _buttonPadding),
               child: ElevatedButton(
                 onPressed: _nextPageButtonByNavigatorTapped,
                 child: Text(_navigatorButtonText),
@@ -102,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Center(
             child: Padding(
-              padding: EdgeInsets.only(top: _buttonPadding),
+              padding: const EdgeInsets.only(top: _buttonPadding),
               child: ElevatedButton(
                 onPressed: _nextPageButtonByRouteNameTapped,
                 child: Text(_routeNameButtonText),
@@ -111,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Center(
             child: Padding(
-              padding: EdgeInsets.only(top: _buttonPadding),
+              padding: const EdgeInsets.only(top: _buttonPadding),
               child: ElevatedButton(
                 onPressed: _onImagePageButtonTapped,
                 child: Text(_imagePage),
@@ -120,7 +138,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Center(
             child: Padding(
-              padding: EdgeInsets.only(top: _buttonPadding),
+              padding: const EdgeInsets.only(top: _buttonPadding),
               child: ElevatedButton(
                 onPressed: _onTextPageButtonTapped,
                 child: Text(_textPage),
@@ -129,13 +147,40 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Center(
             child: Padding(
-              padding: EdgeInsets.only(top: _buttonPadding),
+              padding: const EdgeInsets.only(top: _buttonPadding),
               child: ElevatedButton(
                 onPressed: _onTextFieldButtonTapped,
-                child: Text(_textFieldPage),
+                child: const Text(_textFieldPage),
               ),
             ),
           ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: _buttonPadding),
+              child: ElevatedButton(
+                onPressed: _onListPageButtonTapped,
+                child: const Text(_listPage),
+              ),
+            ),
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: _buttonPadding),
+              child: ElevatedButton(
+                onPressed: _onLongListsButtonTapped,
+                child: const Text(_longListsPage),
+              ),
+            ),
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: _buttonPadding),
+              child: ElevatedButton(
+                onPressed: _onGridListPageButtonTapped,
+                child: const Text(_gridList),
+              ),
+            ),
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(
